@@ -45,49 +45,22 @@ export default function ShareGatePage({ cnic, onComplete }: ShareGatePageProps) 
     }
   }, [shares, onComplete]);
 
-  const handleShare = useCallback(async () => {
+  const handleShare = useCallback(() => {
     if (shareCooldown || shares >= 5 || sharing) return;
 
     setSharing(true);
     setShareCooldown(true);
     setCooldownSec(5);
 
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Eligibility Check",
-          text: "Apni eligibility check karein",
-          url: window.location.href,
-        });
-      } else {
-        const isMobile =
-          /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Open WhatsApp
+    window.open(`https://wa.me/?text=${whatsappMessage}`, '_blank');
 
-        if (isMobile) {
-          window.location.href = `whatsapp://send?text=${whatsappMessage}`;
-        } else {
-          window.open(
-            `https://web.whatsapp.com/send?text=${whatsappMessage}`,
-            "_blank",
-            "noopener,noreferrer"
-          );
-        }
-      }
-
-      setTimeout(() => {
-        setShares((prev) => Math.min(prev + 1, 5));
-      }, 1000);
-    } catch (err) {
-      console.log(err);
-    } finally {
+    // Track share after brief delay
+    setTimeout(() => {
       setSharing(false);
-    }
-  }, [
-    shareCooldown,
-    shares,
-    sharing,
-    whatsappMessage,
-  ]);
+      setShares(prev => Math.min(prev + 1, 5));
+    }, 1800);
+  }, [shareCooldown, shares, sharing, whatsappMessage]);
 
   const progress = (shares / 5) * 100;
 
