@@ -160,11 +160,6 @@ export default function EligibilityResultPage({ cnic, onProceed, onHome }: Eligi
           </div>
         </div>
 
-        {/* AD Zone */}
-        <div className={`ad-zone mb-8 p-6 transition-all duration-700 ${showSteps ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <span className="text-slate-400 text-xs font-medium">Advertisement — 728 × 90</span>
-        </div>
-
         {/* Steps */}
         <div className={`transition-all duration-700 delay-200 ${showSteps ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_2px_16px_rgba(0,0,0,0.04)] p-6 md:p-8 mb-8">
