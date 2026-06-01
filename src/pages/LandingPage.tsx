@@ -6,6 +6,7 @@ import CountdownTimer from '../components/CountdownTimer';
 import Footer from '../components/Footer';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import SocialProofTicker from '../components/SocialProofTicker';
+import MonetagBanner from '../components/MonetagBanner'; // 1. Yahan import karein
 
 interface LandingPageProps {
   onCheckEligibility: (cnic: string) => void;
@@ -43,9 +44,8 @@ export default function LandingPage({ onCheckEligibility }: LandingPageProps) {
       {/* AD Zone - Below trust */}
       <section className="py-6 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="ad-zone p-8">
-            <span className="text-slate-400 text-xs font-medium">Advertisement — 728 × 90</span>
-          </div>
+          {/* 2. Pehla khali box remove karke actual banner lagaya */}
+          <MonetagBanner /> 
         </div>
       </section>
 
@@ -117,8 +117,9 @@ export default function LandingPage({ onCheckEligibility }: LandingPageProps) {
           </div>
 
           {/* AD Zone - Middle */}
-          <div className="ad-zone mt-12 p-8">
-            <span className="text-slate-400 text-xs font-medium">Advertisement — 728 × 90</span>
+          <div className="mt-12">
+            {/* 3. Doosra khali box remove karke actual banner lagaya */}
+            <MonetagBanner /> 
           </div>
         </div>
       </section>
